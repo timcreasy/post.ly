@@ -1,10 +1,12 @@
 import React from "react";
+import LoginForm from "./Login/LoginForm";
 
 let Login = React.createClass({
   render: function() {
     return (
       <div>
-        Login Page
+        <h1>Login</h1>
+        <LoginForm />
       </div>
     );
   }
