@@ -5,6 +5,7 @@ const jwt = require('jwt-simple');
 const config = require('../../config');
 
 router.post('/sessions', (req, res, next) => {
+  console.log(req.body);
   let username = req.body.username
   User.findOne({username: username})
   .select('password')

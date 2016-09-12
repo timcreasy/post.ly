@@ -1,35 +1,37 @@
 import React from "react";
 
- /*     <div class="container">
-        <form ng-submit="login(username, password)">
-          <div class="form-group">
-            <label>Username</label>
-            <input class="form-control" type="text" ng-model="username" />
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input class="form-control" type="password" ng-model="password" />
-          </div>
-          <input class="btn btn-success btn-lg btn-block" type="submit" value="Login" />
-        </form>
-      </div>
-
-  */
-
 export default React.createClass({
+
+  getInitialState() {
+    return ({ username: "", password: ""});
+  },
+
+  loginClicked(e) {
+    e.preventDefault();
+    this.props.loginUser({username: this.state.username, password: this.state.password});
+  },
+
+  handleUsernameChange(e) {
+    this.setState({username: e.target.value});
+  },
+
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value});
+  },
+
   render() {
     return (
       <div className="container">
         <form>
           <div className="form-group">
             <label>Username</label>
-            <input className="form-control" type="text"/>
+            <input className="form-control" type="text" onChange={this.handleUsernameChange}/>
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input className="form-control" type="password" />
+            <input className="form-control" type="password" onChange={this.handlePasswordChange}/>
           </div>
-          <input className="btn btn-success btn-lg btn-block" type="submit" value="Login" />
+          <input className="btn btn-success btn-lg btn-block" type="submit" value="Login" onClick={this.loginClicked}/>
         </form>
       </div>
     );
