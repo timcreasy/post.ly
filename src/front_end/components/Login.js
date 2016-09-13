@@ -10,7 +10,6 @@ let Login = React.createClass({
       headers: {'X-Auth': token },
       success: (data) => {
         console.log("SUCCESS LOGIN");
-
       },
       error: (xhr, textStatus, err) => {
         console.log("Oops, something happened");
