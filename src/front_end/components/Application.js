@@ -3,13 +3,14 @@ import { Link } from "react-router";
 import PostContainer from "./PostContainer";
 import Login from "./Login";
 import Register from "./Register";
+import { IndexLink } from 'react-router';
 
 let Application = React.createClass({
   render: function() {
     return (
       <div className='container'>
         <ul className='nav navbar-nav' role='nav'>
-          <li><Link to="/posts">Posts</Link></li>
+          <li><IndexLink to="/" activeClassName="active">Posts</IndexLink></li>
           <li><Link to="/login">Login</Link></li>
           <li><Link to="/register">Register</Link></li>
         </ul>
