@@ -8,12 +8,18 @@ import emitter from "../../events/AppEvents";
 
 let Application = React.createClass({
 
+  componentDidMount() {
+    emitter.addListener('loginEvent', (username) => {
+      this.setState({ loggedInUserName: "Signed in as " + username, currentUser: username });
+    });
+  },
 
+
+  getInitialState() {
+    return ({ loggedInUserName: "", currentUser: "" });
+  },
 
   render: function() {
-    emitter.addListener('loginEvent', (username) => {
-      console.log("SHIT SOMEONE LOGGED IN:", username);
-    });
 
     return (
       <div className='container'>
@@ -24,6 +30,7 @@ let Application = React.createClass({
               <li><Link to="/login">Login</Link></li>
               <li><Link to="/register">Register</Link></li>
             </ul>
+            <p className="navbar-text navbar-right">{this.state.loggedInUserName}</p>
           </div>
         </nav>
         {this.props.children}
