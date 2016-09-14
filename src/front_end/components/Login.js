@@ -1,7 +1,12 @@
 import React from "react";
 import LoginForm from "./Login/LoginForm";
+import emitter from "../../events/AppEvents";
 
 let Login = React.createClass({
+
+  getInitialState() {
+    return ({ currentUser: "" });
+  },
 
   getUser(token) {
     $.ajax({
@@ -9,7 +14,7 @@ let Login = React.createClass({
       method: 'GET',
       headers: {'X-Auth': token },
       success: (data) => {
-        console.log("SUCCESS LOGIN");
+        emitter.emit('loginEvent', this.state.currentUser);
       },
       error: (xhr, textStatus, err) => {
         console.log("Oops, something happened");
@@ -26,6 +31,7 @@ let Login = React.createClass({
       contentType: "application/json",
       data: JSON.stringify(user),
       success: (data) => {
+        this.setState({ currentUser: user.username });
         this.getUser(data);
       },
       error: (xhr, textStatus, err) => {
@@ -35,6 +41,7 @@ let Login = React.createClass({
   },
 
   render: function() {
+
     return (
       <div>
         <h1>Login</h1>
