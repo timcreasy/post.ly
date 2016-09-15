@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import PostContainer from "./PostContainer";
 import Login from "./Login";
 import Register from "./Register";
-import { IndexLink } from 'react-router';
+import { IndexLink, browserHistory } from 'react-router';
 import emitter from "../../events/AppEvents";
 
 let Application = React.createClass({
@@ -12,6 +12,8 @@ let Application = React.createClass({
     emitter.addListener('loginEvent', (username) => {
       this.setState({ loggedInUserName: "Signed in as " + username, currentUser: username });
     });
+
+    // if (!this.state.currentUser) { browserHistory.push('/login')};
   },
 
 
