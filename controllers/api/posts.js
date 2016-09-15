@@ -12,20 +12,21 @@ router.get('/posts', (req, res, next) => {
 
 router.post('/posts', (req, res, next) => {
 
-  let post = new Post({ body: req.body.body, username: req.body.username });
-  post.save(function (err, post) {
-    if (err) { return next(err) };
-    res.status(201).json(post);
-  });
+  // let post = new Post({ body: req.body.body, username: req.body.username });
+  // post.save(function (err, post) {
+  //   if (err) { return next(err) };
+  //   res.status(201).json(post);
+  // });
+
 
 
   // WITH AUTH
-  // let post = new Post({ body: req.body.body });
-  // post.username = req.auth.username;
-  // post.save(function (err, post) {
-  //   if (err) { return next(err) }
-  //   res.status(201).json(post)
-  // });
+  let post = new Post({ body: req.body.body });
+  post.username = req.auth.username;
+  post.save(function (err, post) {
+    if (err) { return next(err) }
+    res.status(201).json(post)
+  });
 
 });
 

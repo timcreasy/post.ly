@@ -34,6 +34,9 @@ let Login = React.createClass({
       data: JSON.stringify(user),
       success: (data) => {
         this.setState({ currentUser: user.username });
+        $.ajaxSetup({
+            headers: { 'x-auth': data }
+        });
         this.getUser(data);
       },
       error: (xhr, textStatus, err) => {
