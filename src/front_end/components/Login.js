@@ -11,9 +11,9 @@ let Login = React.createClass({
 
   getUser(token) {
     $.ajax({
-      url: '/api/users',
+      url: 'http://104.236.71.66:8080/api/users',
       method: 'GET',
-      headers: {'X-Auth': token },
+      headers: {'x-auth': token },
       success: (data) => {
         emitter.emit('loginEvent', this.state.currentUser);
         browserHistory.push('/posts');
@@ -27,16 +27,13 @@ let Login = React.createClass({
 
   handleLogin(user) {
     $.ajax({
-      url: '/api/sessions',
+      url: 'http://104.236.71.66:8080/api/sessions',
       method: 'POST',
       data: 'json',
       contentType: "application/json",
       data: JSON.stringify(user),
       success: (data) => {
         this.setState({ currentUser: user.username });
-        $.ajaxSetup({
-            headers: { 'x-auth': data }
-        });
         this.getUser(data);
       },
       error: (xhr, textStatus, err) => {

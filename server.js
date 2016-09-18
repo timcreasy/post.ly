@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var app = express();
 
-require('./db')
+// require('./db')
 
 app.use(bodyParser.json());
 app.use(require('./controllers'));

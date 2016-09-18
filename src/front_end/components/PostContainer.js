@@ -16,7 +16,7 @@ const PostContainer = React.createClass({
   loadPosts: function() {
 
     $.ajax({
-      url: '/api/posts',
+      url: 'http://104.236.71.66:8080/api/posts',
       method: "GET",
       dataType: "json",
       success: (posts) => {
@@ -30,8 +30,9 @@ const PostContainer = React.createClass({
   },
 
   submitPost: function(newPost) {
+    console.log("NEW POST", newPost);
     $.ajax({
-      url: '/api/posts',
+      url: 'http://104.236.71.66:8080/api/posts',
       method: 'POST',
       data: JSON.stringify(newPost),
       contentType: 'application/json',
