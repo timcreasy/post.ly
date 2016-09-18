@@ -13,7 +13,7 @@ let Login = React.createClass({
     $.ajax({
       url: 'http://104.236.71.66:8080/api/users',
       method: 'GET',
-      headers: {'x-auth': token },
+      headers: {'x-auth': token.token },
       success: (data) => {
         emitter.emit('loginEvent', this.state.currentUser);
         browserHistory.push('/posts');
@@ -34,6 +34,7 @@ let Login = React.createClass({
       data: JSON.stringify(user),
       success: (data) => {
         this.setState({ currentUser: user.username });
+        console.log("USER FOUND:", data);
         this.getUser(data);
       },
       error: (xhr, textStatus, err) => {

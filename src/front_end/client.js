@@ -6,11 +6,6 @@ import Posts from "./components/PostContainer";
 import Register from "./components/Register";
 import Login from "./components/Login";
 
-// const app = document.getElementById('app');
-// ReactDOM.render(<Application/>, app);
-
-
-
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Application} >
