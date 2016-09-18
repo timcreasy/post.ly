@@ -2,6 +2,7 @@ import React from "react";
 import LoginForm from "./Login/LoginForm";
 import emitter from "../../events/AppEvents";
 import {browserHistory} from "react-router";
+import userAuth from '../../../userAuth';
 
 let Login = React.createClass({
 
@@ -34,6 +35,7 @@ let Login = React.createClass({
       data: JSON.stringify(user),
       success: (data) => {
         this.setState({ currentUser: user.username });
+        userAuth.set(data.token);
         this.getUser(data.token);
       },
       error: (xhr, textStatus, err) => {

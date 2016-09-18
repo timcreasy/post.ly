@@ -1,6 +1,7 @@
 import React from "react";
 import NewPostForm from "./PostContainer/NewPostForm";
 import PostList from "./PostContainer/PostList";
+import userAuth from '../../../userAuth';
 
 const PostContainer = React.createClass({
 
@@ -36,6 +37,7 @@ const PostContainer = React.createClass({
       method: 'POST',
       data: JSON.stringify(newPost),
       contentType: 'application/json',
+      headers: {'x-auth': userAuth.get() },
       success: (data) => {
         console.log("Added post:", data);
         this.loadPosts();

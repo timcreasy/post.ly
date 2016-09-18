@@ -12,7 +12,7 @@ const NewPostForm = React.createClass({
 
   submitPost: function(e) {
     e.preventDefault();
-    this.props.addPost({ username: "timcreasy", body: this.state.body });
+    this.props.addPost({ body: this.state.body });
   },
 
   render: function() {
